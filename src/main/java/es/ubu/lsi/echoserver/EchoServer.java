@@ -39,17 +39,16 @@ public class EchoServer {
 	
 	   private static final HashSet<Integer> _blackListedPorts = new HashSet<>();
 	    
-	    static {
-	    	_blackListedPorts.add(49152);
-	        _blackListedPorts.add(49153);
-	    }
-	
 	
     public static void main(String[] args) throws IOException {
         
         if (args.length != 1) {
             System.err.println("Usage: java EchoServer <port number>");
             System.exit(1);
+        }
+        
+        for (int i = 100; i < 65535; i++) {
+        	_blackListedPorts.add(i);
         }
         
         int portNumber = Integer.parseInt(args[0]);
